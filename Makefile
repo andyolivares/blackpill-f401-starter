@@ -15,7 +15,6 @@
 ######################################
 TARGET = BlackPill-F401-Starter
 
-
 ######################################
 # building variables
 ######################################
@@ -23,7 +22,6 @@ TARGET = BlackPill-F401-Starter
 DEBUG = 1
 # optimization
 OPT = -Og
-
 
 #######################################
 # paths
@@ -39,24 +37,24 @@ C_SOURCES =  \
 Src/main.c \
 Src/stm32f4xx_it.c \
 Src/stm32f4xx_hal_msp.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pcd.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pcd_ex.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_usb.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ramfunc.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c \
+Drivers/stm32f4xx_hal_driver/Src/stm32f4xx_hal_tim.c \
+Drivers/stm32f4xx_hal_driver/Src/stm32f4xx_hal_tim_ex.c \
+Drivers/stm32f4xx_hal_driver/Src/stm32f4xx_hal_pcd.c \
+Drivers/stm32f4xx_hal_driver/Src/stm32f4xx_hal_pcd_ex.c \
+Drivers/stm32f4xx_hal_driver/Src/stm32f4xx_ll_usb.c \
+Drivers/stm32f4xx_hal_driver/Src/stm32f4xx_hal_rcc.c \
+Drivers/stm32f4xx_hal_driver/Src/stm32f4xx_hal_rcc_ex.c \
+Drivers/stm32f4xx_hal_driver/Src/stm32f4xx_hal_flash.c \
+Drivers/stm32f4xx_hal_driver/Src/stm32f4xx_hal_flash_ex.c \
+Drivers/stm32f4xx_hal_driver/Src/stm32f4xx_hal_flash_ramfunc.c \
+Drivers/stm32f4xx_hal_driver/Src/stm32f4xx_hal_gpio.c \
+Drivers/stm32f4xx_hal_driver/Src/stm32f4xx_hal_dma_ex.c \
+Drivers/stm32f4xx_hal_driver/Src/stm32f4xx_hal_dma.c \
+Drivers/stm32f4xx_hal_driver/Src/stm32f4xx_hal_pwr.c \
+Drivers/stm32f4xx_hal_driver/Src/stm32f4xx_hal_pwr_ex.c \
+Drivers/stm32f4xx_hal_driver/Src/stm32f4xx_hal_cortex.c \
+Drivers/stm32f4xx_hal_driver/Src/stm32f4xx_hal.c \
+Drivers/stm32f4xx_hal_driver/Src/stm32f4xx_hal_exti.c \
 Src/system_stm32f4xx.c  
 
 # ASM sources
@@ -107,18 +105,16 @@ C_DEFS =  \
 -DUSE_HAL_DRIVER \
 -DSTM32F401xC
 
-
 # AS includes
 AS_INCLUDES = 
 
 # C includes
 C_INCLUDES =  \
 -IInc \
--IDrivers/STM32F4xx_HAL_Driver/Inc \
--IDrivers/STM32F4xx_HAL_Driver/Inc/Legacy \
--IDrivers/CMSIS/Device/ST/STM32F4xx/Include \
--IDrivers/CMSIS/Include
-
+-IDrivers/stm32f4xx_hal_driver/Inc \
+-IDrivers/stm32f4xx_hal_driver/Inc/Legacy \
+-IDrivers/cmsis_device_f4/Include \
+-IDrivers/cmsis_core/Include
 
 # compile gcc flags
 ASFLAGS = $(MCU) $(AS_DEFS) $(AS_INCLUDES) $(OPT) -Wall -fdata-sections -ffunction-sections
@@ -145,7 +141,6 @@ LDFLAGS = $(MCU) -specs=nano.specs -T$(LDSCRIPT) $(LIBDIR) $(LIBS) -Wl,-Map=$(BU
 
 # default action: build all
 all: $(BUILD_DIR)/$(TARGET).elf $(BUILD_DIR)/$(TARGET).hex $(BUILD_DIR)/$(TARGET).bin
-
 
 #######################################
 # build the application
